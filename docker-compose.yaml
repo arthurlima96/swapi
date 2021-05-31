@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo
+    volumes:
+      - ./mongodb-data:/data/db
+    ports:
+      - "27017:27017"
+  # acesso administrativo MongoDB:
+  #   http://0.0.0.0:8081
+  mongo-express:
+    image: mongo-express
+    links:
+      - mongo
+    container_name: "mongo-express"
+    ports:
+      - 8081:8081
